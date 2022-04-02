@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 const isDev = process.env.NODE_ENV === 'development';
+const isProd = !isDev;
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
@@ -22,7 +23,8 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env'],
+                        plugins: ["@babel/plugin-transform-runtime"]
                     }
                 }
             },
